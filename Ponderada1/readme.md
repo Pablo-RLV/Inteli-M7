@@ -75,6 +75,8 @@ docker pull pablorlv/curriculo-php:0.0.1
 docker run -d -p 80:80 pablorlv/curriculo-php:0.0.1
 ```
 
+A partir desse momento, a aplicação estará disponível no endereço <http://localhost>.
+
 ## 4. Conclusão
 
 O projeto foi criado com sucesso e a imagem do container foi disponibilizada no Docker Hub, o que permite a qualquer pessoa acessar essa imagem independentemente da sua máquina. Logo, é possível perceber a importância da utilização de containers para a execução de aplicações, pois, além de facilitar a execução da aplicação, também facilita a disponibilização da aplicação para outras pessoas.
