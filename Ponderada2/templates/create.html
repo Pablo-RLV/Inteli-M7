@@ -1,4 +1,13 @@
-<form action='' method = "POST">
-    <p>texto<input type = "text" name = "texto" /></p>
-    <p><input type = "submit" value = "Submit" /></p>
-  </form>
+{% extends 'base.html' %}
+    {% block content %}
+      <h3 class="text-light mt-3">Create</h3>
+      <form action='' method = "POST">
+        <center>
+          <div class="input-group w-50 mt-5">
+            <input type="text" name="texto" class="form-control btn-outline-secondary">
+            <button type="submit" class="btn btn-outline-success"><i class="material-icons">&#xe5ca;</i></button>
+            <a href="/"><button class="btn btn-outline-danger" type="button"><i class="material-icons">&#xe5cd;</i></button></a>
+          </div>
+        </center>
+      </form>
+    {% endblock %}
