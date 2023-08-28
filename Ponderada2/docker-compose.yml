@@ -1,0 +1,33 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: my-postgres
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  python-app:
+    image: python:latest
+    container_name: my-python-app
+    working_dir: /app
+    volumes:
+      - ./app:/app
+      - ./app.py:/app/app.py
+      - ./models.py:/app/models.py
+      - ./templates:/app/templates
+      - ./static/css:/app/static/css
+      - ./requirements.txt:/app/requirements.txt
+    depends_on:
+      - postgres
+    ports:
+      - "5000:5000"
+    command: /bin/bash -c "pip install -r requirements.txt && python app.py"
+
+volumes:
+  postgres_data:
