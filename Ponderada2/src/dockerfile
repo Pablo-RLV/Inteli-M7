@@ -1,0 +1,36 @@
+# Use a base image oficial do Python
+FROM python:3.10.0a7-alpine3.13
+
+# Define variáveis de ambiente
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=80
+
+# Define variáveis de ambiente para a configuração do PostgreSQL
+ENV POSTGRES_HOST=postgres_host
+ENV POSTGRES_PORT=5432
+ENV POSTGRES_USER=myuser
+ENV POSTGRES_PASSWORD=mypassword
+ENV POSTGRES_DB=mydb
+
+# Cria um diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copia o arquivo requirements.txt para o diretório de trabalho
+COPY requirements.txt requirements.txt
+
+# Instala as bibliotecas listadas no requirements.txt
+RUN pip install -r requirements.txt
+
+# Copia o arquivo app.py para o diretório de trabalho
+COPY app.py app.py
+
+# Copia o arquivo app.py para o diretório de trabalho
+COPY models.py models.py
+
+
+# Expõe a porta 80 do contêiner
+EXPOSE 80
+
+# Define um comando de entrada para executar o aplicativo Flask
+CMD ["flask", "run"]

@@ -1,18 +1,16 @@
 {% extends 'base.html' %}
     {% block content %}
         <center>
-            <form>
-                <!-- Email input -->
+            <form action="" method="POST">
                 <div class="form-outline my-4 w-25">
-                    <input type="text" class="form-control btn-outline-secondary" />
+                    <input name="user" type="text" class="form-control btn-outline-secondary" />
                     <label class="form-label">User</label>
                 </div>
-                <!-- Password input -->
                 <div class="form-outline mb-4 w-25">
-                    <input type="password" class="form-control btn-outline-secondary" />
+                    <input name="password" type="password" class="form-control btn-outline-secondary" />
                     <label class="form-label">Password</label>
                 </div>
-                <button type="button" class="btn btn-light mb-4">Sign in</button>
+                <button type="submit" class="btn btn-light mb-4">Sign in</button>
             </form>
         </center>
     {% endblock %}
