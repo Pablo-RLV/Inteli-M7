@@ -1,33 +1,31 @@
-version: '3'
+version: '3.1'
+
 services:
-  postgres:
-    image: postgres:latest
-    container_name: my-postgres
-    environment:
-      POSTGRES_DB: mydatabase
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
-  python-app:
-    image: python:latest
-    container_name: my-python-app
-    working_dir: /app
-    volumes:
-      - ./app:/app
-      - ./app.py:/app/app.py
-      - ./models.py:/app/models.py
-      - ./templates:/app/templates
-      - ./static/css:/app/static/css
-      - ./requirements.txt:/app/requirements.txt
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    expose:
+      - "5000"
+    ports:
+      - 5000:5000
     depends_on:
-      - postgres
-    ports:
-      - "5000:5000"
-    command: /bin/bash -c "pip install -r requirements.txt && python app.py"
+      - db
+    container_name: pablorlvapi
 
-volumes:
-  postgres_data:
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    expose:
+      - "5432"
+    ports:
+      - 5432:5432
+    container_name: pablorlvdb

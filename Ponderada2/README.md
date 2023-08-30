@@ -6,22 +6,38 @@ O objetivo deste projeto é criar uma aplicação que realize um CRUD em um bloc
 
 Essa aplicação foi então containerizada utilizando o Docker, e as imagens foram enviadas para o Docker Hub. Como arquitetura, foi escolhida a separação da aplicação em dois containers: um para o banco de dados e outro para a aplicação em si. Para a comunicação entre os containers, foi utilizado o Docker Compose.
 
-## Como utilizar
-
-Para utilizar a solução de forma local, é necessário ter o Docker e o Docker Compose instalados. Após isso, basta clonar o repositório e executar o comando `docker-compose up` na pasta raiz do projeto. A aplicação estará disponível em `localhost:5000`.
-
 ## Rotas
 
 A aplicação possui as seguintes rotas:
 
 - `/` (GET): Retorna a tela de login.
-- '/' (POST): Realiza o login do usuário.
+- `/` (POST): Realiza o login do usuário.
 
 A partir daqui, todas as rotas necessitam de autenticação.
 
-- '/read' (GET): Retorna a tela com as anotações do usuário.
-- '/create' (GET): Retorna a tela para criação de uma nova anotação.
-- '/create' (POST): Cria uma nova anotação.
-- '/update/{id}' (GET): Retorna a tela para edição de uma anotação.
-- '/update/{id}' (POST): Edita uma anotação.
-- '/delete/{id}' (GET): Deleta uma anotação.
+- `/read` (GET): Retorna a tela com as anotações do usuário.
+- `/create` (GET): Retorna a tela para criação de uma nova anotação.
+- `/create` (POST): Cria uma nova anotação.
+- `/update/{id}` (GET): Retorna a tela para edição de uma anotação.
+- `/update/{id}` (POST): Edita uma anotação.
+- `/delete/{id}` (GET): Deleta uma anotação.
+
+## Como utilizar
+
+Para executar a aplicação, siga os seguintes passos:
+
+- Certifique-se de ter o Docker e o Docker Compose instalados em sua máquina.
+- Faça o clone da imagem do Docker Hub do backend com o comando `docker pull pablrlv/api:latest`
+- Faça o clone da imagem do Docker Hub do banco de dados com o comando `docker pull pablrlv/db:latest`
+- Acesse a pasta do projeto e execute o comando `docker-compose up`
+- Acesse <http://localhost:5000> para acessar a aplicação.
+
+## Autenticação
+
+O usuário cadastrado para testes é:
+Usuário: `pablo`
+Senha: `pablo`
+
+## Demonstração
+
+O vídeo de demonstração do funcionamento da aplicação está disponível em: <https://youtu.be/M6h-nZsfkKI>

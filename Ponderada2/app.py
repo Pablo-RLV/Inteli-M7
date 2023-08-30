@@ -1,23 +1,27 @@
 from flask import Flask,render_template,request,redirect, abort, jsonify, make_response
-from models import db,TextModel,UserModel
+from models import db,TextModel,UserModel, create_table
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token
+import os
 
 app = Flask(__name__)
+
 app.config["JWT_SECRET_KEY"] = "Pablinho"
 app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
 app.config["JWT_COOKIE_SECURE"] = False
 app.config['JWT_COOKIE_CSRF_PROTECT'] = False
 jwt = JWTManager(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:password@db:5432/postgres"
+#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///"
+
 db.init_app(app)
 
-response = None
+create_table(app)
 
 @app.before_first_request
 def create_table():
     db.create_all()
-    db.session.add(UserModel(username="test", password="test"))
+    db.session.add(UserModel(username=os.environ.get("USERNAME"), password=os.environ.get("PASSWORD")))
     db.session.commit()
 
 @app.route('/', methods=['GET', 'POST'])
@@ -26,12 +30,12 @@ def Login():
         return render_template('index.html')
 
     if request.method == 'POST':
-        username = request.form['user']
+        username = request.form['username']
         password = request.form['password']
-        if username != "test" or password != "test":
+        user = UserModel.query.filter_by(username=username, password=password).first()
+        if not user:
             return jsonify({"msg": "Bad username or password"}), 401
         access_token = create_access_token(identity=username)
-        global response
         response = make_response(jsonify({"access_token": access_token}), 200)
         response.set_cookie('access_token_cookie', access_token, httponly=True)
         response.headers['Location'] = '/read'
@@ -85,4 +89,4 @@ def delete(id):
         abort(404)
     return render_template('delete.html')
 
-app.run(host='localhost', port=5000, debug=True)
+app.run(host='0.0.0.0', port=4000, debug=True)
