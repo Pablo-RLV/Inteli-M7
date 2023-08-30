@@ -27,8 +27,8 @@ A partir daqui, todas as rotas necessitam de autenticação.
 Para executar a aplicação, siga os seguintes passos:
 
 - Certifique-se de ter o Docker e o Docker Compose instalados em sua máquina.
-- Faça o clone da imagem do Docker Hub do backend com o comando `docker pull pablrlv/api:latest`
-- Faça o clone da imagem do Docker Hub do banco de dados com o comando `docker pull pablrlv/db:latest`
+- Faça o clone da imagem do Docker Hub do backend com o comando `docker pull pablrlv/api:latest`. O link para o repositório é <https://hub.docker.com/repository/docker/pablorlv/api/general>
+- Faça o clone da imagem do Docker Hub do banco de dados com o comando `docker pull pablrlv/db:latest`. O link para o repositório é <https://hub.docker.com/repository/docker/pablorlv/db/general>
 - Acesse a pasta do projeto e execute o comando `docker-compose up`
 - Acesse <http://localhost:5000> para acessar a aplicação.
 
