@@ -18,6 +18,9 @@ O Dockerfile do backend segue a seguinte estrutura:
     RUN pip install -r requirements.txt
     #instala as bibliotecas necessárias
 
+    EXPOSE 8000
+    #expõe a porta 8000
+
     CMD python main.py
     #executa a aplicação
 
@@ -43,3 +46,33 @@ O Dockerfile do frontend segue a seguinte estrutura:
 
     CMD [ "node", "server.js" ]
     #executa a aplicação
+
+DockerHub backend: <https://hub.docker.com/repository/docker/pablorlv/python_prova/general>
+DockerHub frontend: <https://hub.docker.com/repository/docker/pablorlv/js_prova/general>
+
+A estrutura do docker-compose se encontra abaixo:
+
+    version: '3.1'
+    #versão do compose
+
+    services:
+
+    python:
+        image: pablorlv/python_prova:0.0.1 #apresenta a imagem a ser utilizada
+        ports:
+        - 8000:8000 #mapeia as portas
+        depends_on:
+        - js #apresenta as dependências
+        container_name: python_prova #define o nome do container
+
+    js:
+        image: pablorlv/js_prova:0.0.1 #apresenta a imagem a ser utilizada
+        ports:
+        - 3000:3000 #mapeia as portas
+        container_name: js_prova #define o nome do container
+
+Para executar a solução, basta clonar esse repositório, navegar até a pasta principal do projeto e utilizar o comando:
+
+    docker-compose-up
+
+A partir disso, a solução começará a ser renderizada e então será possível acessá-la através de localhost.

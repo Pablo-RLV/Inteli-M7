@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+
+  python:
+    image: pablorlv/python_prova:0.0.1
+    ports:
+      - 8000:8000
+    depends_on:
+      - js
+    container_name: python_prova
+
+  js:
+    image: pablorlv/js_prova:0.0.1
+    ports:
+      - 3000:3000
+    container_name: js_prova
