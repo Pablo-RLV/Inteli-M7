@@ -28,4 +28,4 @@ async def process_form_data(request: Request, age: int = Form(...), anual_income
     return templates.TemplateResponse("index.html", {"request":request, "prediction": predictions["prediction_label"].iloc[0]})
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
