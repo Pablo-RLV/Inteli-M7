@@ -1,0 +1,10 @@
+bin
+include
+lib
+lib64
+etc
+images
+share
+*pyvenv.cfg
+*logs.logs
+*.vscode
