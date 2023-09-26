@@ -1,0 +1,6 @@
+pycaret[full]
+fastapi
+uvicorn
+psycopg2-binary
+matplotlib
+pandas
