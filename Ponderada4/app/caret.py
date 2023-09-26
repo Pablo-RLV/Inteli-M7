@@ -36,6 +36,27 @@ async def read_root(request: Request):
         prediction = ""
     return templates.TemplateResponse("index.html", {"request": request, "prediction": prediction})
 
+@app.get("/graph")
+async def graph():
+    try: 
+        connection = psycopg2.connect(url)
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM predictions")
+        banco = cursor.fetchall()
+        df = pd.DataFrame(banco, columns=['id', 'prediction'])
+        df = df['prediction'].value_counts()
+        df.plot(kind='bar', color="black")
+        if os.path.exists(filename):
+            os.remove(filename)
+        plt.savefig(filename)
+        print("gráfico criado")
+        plt.close()
+        cursor.close()
+        connection.close()
+    except psycopg2.Error as e:
+        print("Ocorreu um erro ao se conectar ao banco de dados:", e)
+    return FileResponse(filename)
+
 @app.post("/predict")
 async def process_form_data(age: int = Form(...), anual_income: int = Form(...), inlineRadioOptions: int = Form(...)):
     data = {"Gender": inlineRadioOptions, "Age": age, "Anual_Income": anual_income}
@@ -47,22 +68,12 @@ async def process_form_data(age: int = Form(...), anual_income: int = Form(...),
         cursor = connection.cursor()
         cursor.execute("INSERT INTO predictions (prediction) VALUES ('" + result + "')")
         connection.commit()
-        cursor.execute("SELECT * FROM predictions")
-        banco = cursor.fetchall()
-        df = pd.DataFrame(banco, columns=['id', 'prediction'])
-        df = df['prediction'].value_counts()
-        df.plot(kind='bar', color="black")
-        if os.path.exists(filename):
-            os.remove(filename)
-            print("gráfico removido")
-        plt.savefig(filename)
-        plt.close()
+        print("Inserido no banco de dados")
         cursor.close()
         connection.close()
-        print("Inserido no banco de dados")
     except psycopg2.Error as e:
         print("Ocorreu um erro ao se conectar ao banco de dados:", e)
-    return FileResponse(filename)
+    return RedirectResponse(url="/", status_code=302)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
