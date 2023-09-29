@@ -5,9 +5,9 @@ import uvicorn
 import psycopg2
 
 # Constantes
-DB_USER = "meuuserawsrds"
-DB_PASSWORD = "postgres"
-DB_HOST = "database-postgres.c36tibwlwhak.us-east-1.rds.amazonaws.com"
+DB_USER = "postgres"
+DB_PASSWORD = "password"
+DB_HOST = "db-prova.c0o921vdjmm9.us-east-1.rds.amazonaws.com"
 DB_PORT = "5432"
 DB_NAME = "postgres"
 
