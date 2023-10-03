@@ -4,3 +4,7 @@ uvicorn
 psycopg2-binary
 matplotlib
 pandas
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+python-dotenv
