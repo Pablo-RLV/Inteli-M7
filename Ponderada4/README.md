@@ -26,7 +26,12 @@ Em seguida, abra o navegador e acesse a porta 8000 da máquina virtual. A aplica
 
 ## Demonstração
 
-O vídeo de demonstração de execução da aplicação está disponível no seguinte [link](<https://youtu.be/zPrpcYPTaQY>).
+O vídeo de demonstração de execução da aplicação está representado a seguir:
+<video controls>
+  <source src="./video/demo.webm" type="video/webm" />
+</video>
+
+Alternativamente, pode ser acessado pelo seguinte [link](<https://youtu.be/zPrpcYPTaQY>).
 
 ## Conclusão
 
