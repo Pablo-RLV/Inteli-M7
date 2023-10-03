@@ -24,6 +24,10 @@ Em seguida, abra o navegador e acesse a porta 8000 da máquina virtual. A aplica
 
 (As imagens utilizadas podem ser encontradas no seguinte [link](<https://hub.docker.com/u/pablorlv>))
 
+## Demonstração
+
+O vídeo de demonstração de execução da aplicação está disponível no seguinte [link](<https://youtu.be/zPrpcYPTaQY>).
+
 ## Conclusão
 
 A partir dessa atividade, foi possível entender melhor o funcionamento do deploy completo de um modelo preditivo, começando desde o tratamento dos dados, passando pelo treinamento do modelo, até o deploy da aplicação na AWS, integrada a uma visualização de dados.
