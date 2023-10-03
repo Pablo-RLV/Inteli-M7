@@ -27,9 +27,7 @@ Em seguida, abra o navegador e acesse a porta 8000 da máquina virtual. A aplica
 ## Demonstração
 
 O vídeo de demonstração de execução da aplicação está representado a seguir:
-<video controls>
-  <source src="./video/demo.webm" type="video/webm" />
-</video>
+[demo.webm](https://github.com/Pablo-RLV/Inteli-M7-T2/assets/99209107/4b1fa1cc-4f1e-4660-b68a-dd3d9af7ecb4)
 
 Alternativamente, pode ser acessado pelo seguinte [link](<https://youtu.be/zPrpcYPTaQY>).
 
